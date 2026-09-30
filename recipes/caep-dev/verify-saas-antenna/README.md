@@ -180,8 +180,8 @@ curl -X POST "https://$TENANT/oauth2/token" \
 4. Configure the event:
    - **Event Type:** `Session Revoked`
    - **Subject type:** `Complex`
-   - Add a Complex Subject **Application** → `Opaque` → Id: your IBM Verify application UUID
-   - Add a Complex Subject **User** → `Opaque` → Id: the IBM Verify user UUID whose grants should be revoked
+   - Add a Complex Subject **Application** → `Opaque` → Id: your IBM Verify application ID
+   - Add a Complex Subject **User** → `Opaque` → Id: the IBM Verify user ID whose grants should be revoked
 5. Select `Send CAEP Event`.
 6. Verify the results:
 
@@ -205,7 +205,7 @@ curl -X POST "https://$TENANT/oauth2/token" \
 
 ### How workflow context works
 
-Any context key can be referenced inside a task input using the macro syntax `@context.<key>@`. The workflow engine resolves the macro to its current value before the task executes. For example, `@context.subject.sub_id.application.id@` in the `Application ID` field of `Modify application status` is replaced at runtime with the application UUID from the incoming CAEP event.
+Any context key can be referenced inside a task input using the macro syntax `@context.<key>@`. The workflow engine resolves the macro to its current value before the task executes. For example, `@context.subject.sub_id.application.id@` in the `Application ID` field of `Modify application status` is replaced at runtime with the application ID from the incoming CAEP event.
 
 Tasks can also **write back** into the context via their declared outputs. For instance, the `Modify application status` task writes `applicationState` into the context after it runs.
 
